@@ -1,23 +1,17 @@
-import React, { Component} from 'react';
+import React from 'react';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { render } from 'react-dom';
-
-
+import App from './App';
+import ProductsPage from './ProductsPage';
 
 const root = document.getElementById('root');
 
-class App extends Component{
-  constructor(props){
-    super();
-    this.specialNumber = props.specialNumber; 
-  }
-  render(){
-    return (
-      <div className='well'>
-        { this.specialNumber }
-      </div> 
-    );
-  }
-}
+const RouteContainer = (
+  <Router history={ hashHistory }>
+    <Route path="/" component={ App } >
+      <IndexRoute component={ ProductsPage }/>
+    </Route>
+  </Router>
+)
 
-
-render(<App specialNumber={42}/>, root);
+render(RouteContainer, root);
